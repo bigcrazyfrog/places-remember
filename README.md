@@ -14,7 +14,7 @@ Code structure implementation follows a [Clean Architecture][cleanarchitecture] 
 
 Download source code cloning this repository:
 ```
-git clone ...
+git clone https://github.com/bigcrazyfrog/places-remember.git
 ```
 
 ## Run the API backend:
