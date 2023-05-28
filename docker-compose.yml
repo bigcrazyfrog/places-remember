@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+  db:
+    container_name: pg_db
+    image: postgres:13.3
+    env_file:
+      - .env
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data/
+    ports:
+      - "5432:5432"
+
+  web:
+    container_name: app
+    image: ${IMAGE_NAME}
+    build: ./src
+    volumes:
+      - ./src/mounted:/opt/file
+    ports:
+      - "${PORT}:${PORT}"
+    command: python ./src/manage.py runserver 0.0.0.0:8000

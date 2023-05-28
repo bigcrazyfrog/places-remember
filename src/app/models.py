@@ -1,0 +1,1 @@
+from app.internal.admin_users.db.models import AdminUser

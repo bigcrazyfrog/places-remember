@@ -1,0 +1,23 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+django = "~=4.0"
+django-environ = "~=0.8"
+black = "~=21.12b0"
+isort = "~=5.10"
+flake8 = "~=4.0"
+pytest = "*"
+psycopg = "*"
+django-ninja = "*"
+pyjwt = "*"
+
+[requires]
+python_version = "3.10"
+
+[pipenv]
+allow_prereleases = true

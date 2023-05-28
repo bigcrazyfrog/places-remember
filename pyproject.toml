@@ -1,0 +1,25 @@
+[tool.black]
+line-length = 120
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+
+[tool.pytest.ini_options]
+pythonpath = "src/"
+DJANGO_SETTINGS_MODULE = "config.settings"
+markers = [
+    "unit",
+    "smoke",
+    "integration"
+]

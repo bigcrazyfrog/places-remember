@@ -1,0 +1,52 @@
+stages:
+  - build
+  - lint
+  - test
+  - deploy
+
+before_script:
+  - cp $DOT_ENV .env
+ 
+build:
+  stage: build
+  tags:
+    - build
+  script:
+    - make build
+  only:
+    - main
+  environment:
+    name: prod
+
+lint:
+  stage: lint
+  tags:
+    - lint
+  script:
+    - make lint
+  only:
+    - main
+  environment:
+    name: prod
+
+test:
+  stage: test
+  tags:
+    - test
+  script:
+    - make test
+  only:
+    - main
+  environment:
+    name: prod
+ 
+deploy:
+  stage: deploy
+  tags:
+    - deploy
+  script: 
+    - make down up
+  only:
+    - main 
+  environment:
+    name: prod
