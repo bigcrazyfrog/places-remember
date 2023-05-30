@@ -1,9 +1,8 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
+from django_admin_geomap import ModelAdmin
 
 from app.internal.places.db.models import Place
-
-from django_admin_geomap import ModelAdmin
 
 
 @admin.register(Place)

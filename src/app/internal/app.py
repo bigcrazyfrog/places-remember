@@ -1,4 +1,4 @@
-from django.urls import path, include
+from django.urls import include, path
 
 from app.internal.places.db.repositories import PlaceRepository
 from app.internal.places.domain.services import PlaceService

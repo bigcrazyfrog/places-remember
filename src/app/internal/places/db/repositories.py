@@ -2,9 +2,9 @@ from typing import List
 from uuid import UUID
 
 from app.internal.places.db.exceptions import NotFoundException
+from app.internal.places.db.models import Place
 from app.internal.places.domain.entities import PlaceOut
 from app.internal.places.domain.services import IPlaceRepository
-from app.internal.places.db.models import Place
 
 
 class PlaceRepository(IPlaceRepository):
