@@ -50,12 +50,14 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'django.contrib.sites',
+    'django_admin_geomap',
 
     # django-allauth apps
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.vk',
 ]
 
 MIDDLEWARE = [
@@ -123,8 +125,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Authentication settings
 
-SITE_ID = 2
-LOGIN_REDIRECT_URL = '/'
+SITE_ID = 3
+LOGIN_REDIRECT_URL = '/places/'
 
 # Additional configuration settings
 SOCIALACCOUNT_QUERY_EMAIL = True
@@ -141,7 +143,7 @@ SOCIALACCOUNT_PROVIDERS = {
         'AUTH_PARAMS': {
             'access_type': 'online',
         }
-    }
+    },
 }
 
 # Internationalization
