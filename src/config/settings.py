@@ -127,6 +127,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 SITE_ID = 3
 LOGIN_REDIRECT_URL = '/places/'
+LOGOUT_REDIRECT_URL = '/places/'
 
 # Additional configuration settings
 SOCIALACCOUNT_QUERY_EMAIL = True
