@@ -1,0 +1,37 @@
+{% load static %}
+
+{% load socialaccount %}
+<html>
+
+<head>
+    <title>Places Remember</title>
+</head>
+
+<body>
+    {% block mainmenu %}
+        {% if user.is_authenticated %}
+          <p>{{ user.username }}</p>
+            <div>
+              <strong>Menu:</strong>
+              <ul>
+                <li><a href="/accounts/logout/">Sign Out</a></li>
+              </ul>
+            </div>
+          <p>places, {{ user }} </p>
+
+        {% else %}
+          <h1>Places Remember</h1>
+          <p>Веб-приложение, с помощью которого люди смогут хранить свои впечатления о посещаемых местах.</p>
+          <hr>
+
+          <a href="{% provider_login_url 'google' %}">Login with Google</a>
+          <a href="{% provider_login_url "vk"%}" target="blank">Login with VK</a>
+        {% endif %}
+    {% endblock mainmenu %}
+
+    {% block content %}
+    {% endblock %}
+
+</body>
+
+</html>

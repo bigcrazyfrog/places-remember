@@ -1,0 +1,25 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+    {% if status == "OK" %}
+        <li>
+            <h2>{{place.name}}</h2>
+            <p>{{place.description}}</p>
+
+        <div id="yandexmap" style="width: 400px; height: 300px"></div>
+            <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+            <script>let map;
+            function initMap ()
+              {
+              map = new ymaps.Map("yandexmap", {
+                center: [{{place.lon}}, {{place.lat}}],
+                zoom: 16
+                });
+              }
+            ymaps.ready(initMap);
+            </script>
+        </li>
+    {% else %}
+        <p>Place not found</p>
+    {% endif %}
+{% endblock content %}

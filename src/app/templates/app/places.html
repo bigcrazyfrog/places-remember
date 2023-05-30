@@ -1,0 +1,19 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+
+<ul>
+    {% if user.is_authenticated %}
+        <h1> Places </h1>
+        <a href="/places/add/">Add</a>
+
+        {% for place in places %}
+        <li>
+            <a href="/places/{{place.id}}/">{{place.name}}</a>
+            <p>{{place.description}}</p>
+
+        </li>
+        {% endfor %}
+     {% endif %}
+</ul>
+{% endblock content %}
