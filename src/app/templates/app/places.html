@@ -4,14 +4,16 @@
 
 <ul>
     {% if user.is_authenticated %}
-        <h1> Places </h1>
-        <a href="/places/add/">Add</a>
+        <h1> Воспоминания </h1>
+        {% if not places %}
+            <p>У вас нет ни одного воспоминания</p>
+        {% endif %}
 
+        <a href="/places/add/" class="button">Добавить воспоминание</a>
         {% for place in places %}
         <li>
             <a href="/places/{{place.id}}/">{{place.name}}</a>
             <p>{{place.description}}</p>
-
         </li>
         {% endfor %}
      {% endif %}
