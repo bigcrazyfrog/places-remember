@@ -3,7 +3,7 @@ from uuid import UUID
 
 from app.internal.places.db.exceptions import NotFoundException
 from app.internal.places.db.models import Place
-from app.internal.places.domain.entities import PlaceOut
+from app.internal.places.domain.entities import PlaceOut, PlaceIn
 from app.internal.places.domain.services import IPlaceRepository
 
 
@@ -17,3 +17,14 @@ class PlaceRepository(IPlaceRepository):
 
     def get_places(self, user: str) -> List[PlaceOut]:
         return Place.objects.filter(owner=user)
+
+    def create_place(self, data: PlaceIn, owner) -> bool:
+        place = Place.objects.create(
+            name=data.name,
+            description=data.description,
+            lon=data.lon,
+            lat=data.lat,
+            owner=owner
+        )
+
+        return True

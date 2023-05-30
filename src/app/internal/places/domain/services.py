@@ -1,6 +1,6 @@
 from typing import List
 
-from app.internal.places.domain.entities import PlaceOut
+from app.internal.places.domain.entities import PlaceOut, PlaceIn
 
 
 class IPlaceRepository:
@@ -8,6 +8,9 @@ class IPlaceRepository:
         ...
 
     def get_places(self, user: str) -> List[PlaceOut]:
+        ...
+
+    def create_place(self, data: PlaceIn, owner) -> bool:
         ...
 
 
@@ -20,3 +23,6 @@ class PlaceService:
 
     def get_places(self, user: str) -> List[PlaceOut]:
         return self._place_repo.get_places(user=user)
+
+    def create_place(self, data: PlaceIn, owner) -> bool:
+        return self._place_repo.create_place(data=data, owner=owner)

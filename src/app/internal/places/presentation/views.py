@@ -3,6 +3,7 @@ from django.shortcuts import render
 
 from app.internal.places.db.exceptions import NotFoundException
 from app.internal.places.db.models import Place
+from app.internal.places.domain.entities import PlaceIn
 from app.internal.places.domain.services import PlaceService
 from app.internal.places.presentation.forms import PlaceForm
 
@@ -12,7 +13,8 @@ class PlaceViews:
         self._place_service = place_service
 
     def view_places(self, request):
-        return render(request, 'app/places.html', {"places": self._place_service.get_places(request.user.id)})
+        places = self._place_service.get_places(request.user.id)
+        return render(request, 'app/places.html', {"places": places})
 
     def view_place_by_id(self, request, id: int):
         place = None
@@ -28,14 +30,13 @@ class PlaceViews:
         if request.method == "POST":
             form = PlaceForm(request.POST)
             if form.is_valid():
-                name = request.POST.get('name', '')
-                description = request.POST.get('description', '')
-
-                lon = request.POST.get('lon', '')
-                lat = request.POST.get('lat', '')
-
-                Place.objects.create(name=name, description=description,
-                                     lon=lon, lat=lat, owner=request.user)
+                data = PlaceIn(
+                    name=request.POST.get('name', ''),
+                    description=request.POST.get('description', ''),
+                    lon=request.POST.get('lon', ''),
+                    lat=request.POST.get('lat', ''),
+                )
+                self._place_service.create_place(data, request.user)
 
                 return HttpResponseRedirect("/places/")
         else:
