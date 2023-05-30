@@ -15,6 +15,8 @@ pytest = "*"
 psycopg = "*"
 django-ninja = "*"
 pyjwt = "*"
+django-allauth = "*"
+django-admin-geomap = "*"
 
 [requires]
 python_version = "3.10"
