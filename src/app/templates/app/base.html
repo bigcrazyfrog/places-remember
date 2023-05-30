@@ -5,19 +5,17 @@
 
 <head>
     <title>Places Remember</title>
+    <link type="text/css" href="{% static 'app/css/styles.css' %}" rel="stylesheet" />
 </head>
 
 <body>
     {% block mainmenu %}
         {% if user.is_authenticated %}
-          <p>{{ user.username }}</p>
             <div>
-              <strong>Menu:</strong>
-              <ul>
-                <li><a href="/accounts/logout/">Sign Out</a></li>
-              </ul>
+                <p>{{ user.username }}</p>
+                <img src="{{ user.socialaccount_set.all.0.get_avatar_url }}" />
+                <a href="/accounts/logout/">Sign Out</a>
             </div>
-          <p>places, {{ user }} </p>
 
         {% else %}
           <h1>Places Remember</h1>
@@ -27,6 +25,7 @@
           <a href="{% provider_login_url 'google' %}">Login with Google</a>
           <a href="{% provider_login_url "vk"%}" target="blank">Login with VK</a>
         {% endif %}
+    <hr>
     {% endblock mainmenu %}
 
     {% block content %}
