@@ -4,12 +4,6 @@ This repository contains the code for Places Remember API backend.
 
 ---
 
-Сервис размещен на сервер яндекс клауда: https://nikita.backend23.2tapp.cc/places/
-
-Тесты написать не успел.
-Frontend знаю не особо, поэтому не удалось в форме передать координаты отметки с карты, сделал их обычными полями.
-По этой же причины оформление сайта оставляет желать лучшего.
-
 ## Documentation
 
 This project has been developed using [Django][django] and [Django Ninja][djangoninja], [Postgres][postgres] as relational database.
