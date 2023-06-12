@@ -1,22 +1,30 @@
 version: "3.9"
 
 services:
-  db:
-    container_name: pg_db
-    image: postgres:13.3
+  postgres:
+    container_name: ${POSTGRES_HOST}
+    image: postgres:13-alpine3.18
     env_file:
       - .env
     volumes:
       - ./postgres_data:/var/lib/postgresql/data/
-    ports:
-      - "${POSTGRES_PORT}:${POSTGRES_PORT}"
+    networks:
+      - postgres
 
   web:
-    container_name: app
+    container_name: web
     image: ${IMAGE_NAME}
     build: ./src
-    volumes:
-      - ./src/mounted:/opt/file
     ports:
       - "${PORT}:${PORT}"
-    command: python ./src/manage.py runserver 0.0.0.0:8000
+    command: python3 ./src/manage.py runserver 0.0.0.0:${PORT}
+    networks:
+      - postgres
+
+volumes:
+  postgres_data:
+
+networks:
+  postgres:
+    driver: bridge
+
